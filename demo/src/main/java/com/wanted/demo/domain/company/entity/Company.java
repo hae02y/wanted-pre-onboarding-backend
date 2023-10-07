@@ -1,8 +1,11 @@
 package com.wanted.demo.domain.company.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
 public class Company {
 
     @Id

@@ -42,4 +42,9 @@ public class RecruitService {
 
         return recruitRepository.findAll();
     }
+
+    public List<Recruit> findSearchRecruit(String search) {
+
+        return recruitRepository.findRecruitsBySearchString(search);
+    }
 }

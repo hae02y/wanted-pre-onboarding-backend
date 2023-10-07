@@ -2,6 +2,7 @@ package com.wanted.demo.domain.recruit.controller;
 
 import com.wanted.demo.domain.recruit.dto.RecruitPatchDto;
 import com.wanted.demo.domain.recruit.dto.RecruitPostDto;
+import com.wanted.demo.domain.recruit.dto.RecruitResponseDto;
 import com.wanted.demo.domain.recruit.entity.Recruit;
 import com.wanted.demo.domain.recruit.mapper.RecruitMapper;
 import com.wanted.demo.domain.recruit.service.RecruitService;
@@ -53,12 +54,18 @@ public class RecruitController {
 
         List<Recruit> recruitList = recruitService.findRecruit();
 
-        return new ResponseEntity<>(recruitList,HttpStatus.OK);
+        List<RecruitResponseDto> recruitResponseDtos = recruitMapper.recruitListToRecruitResponseDtos(recruitList);
+
+        return new ResponseEntity<>(recruitResponseDtos,HttpStatus.OK);
     }
 
     @GetMapping("/find")
     public ResponseEntity<?> getSearchRecruit(@RequestParam("search") String search){
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<Recruit> recruitList = recruitService.findSearchRecruit(search);
+
+        List<RecruitResponseDto> recruitResponseDtos = recruitMapper.recruitListToRecruitResponseDtos(recruitList);
+
+        return new ResponseEntity<>(recruitResponseDtos,HttpStatus.OK);
     }
 }

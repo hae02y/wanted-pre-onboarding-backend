@@ -14,14 +14,8 @@ public class Company {
     private String name;
 
     @Column
-    private String position;
+    private String nation;
 
     @Column
-    private String bonus;
-
-    @Column
-    private String detail;
-
-    @Column
-    private String technique;
+    private String region;
 }

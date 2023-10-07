@@ -11,9 +11,15 @@ public class Recruit {
     private Long id;
 
     @Column
-    private String nation;
+    private String position;
 
     @Column
-    private String region;
+    private String bonus;
+
+    @Column
+    private String detail;
+
+    @Column
+    private String technique;
 
 }

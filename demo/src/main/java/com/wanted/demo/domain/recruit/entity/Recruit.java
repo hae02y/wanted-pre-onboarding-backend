@@ -1,14 +1,13 @@
 package com.wanted.demo.domain.recruit.entity;
 
 import com.wanted.demo.domain.company.entity.Company;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Setter
+@Getter
 @NoArgsConstructor
 public class Recruit {
 

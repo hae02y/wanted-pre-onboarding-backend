@@ -2,9 +2,7 @@ package com.wanted.demo.domain.recruit.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class RecruitPostDto {
 
         private Long companyId;
@@ -16,5 +14,4 @@ public class RecruitPostDto {
         private String detail;
 
         private String technique;
-
 }

@@ -1,5 +1,6 @@
 package com.wanted.demo.domain.recruit.controller;
 
+import com.wanted.demo.domain.recruit.dto.RecruitDetailDto;
 import com.wanted.demo.domain.recruit.dto.RecruitPatchDto;
 import com.wanted.demo.domain.recruit.dto.RecruitPostDto;
 import com.wanted.demo.domain.recruit.dto.RecruitResponseDto;
@@ -52,7 +53,7 @@ public class RecruitController {
     @GetMapping("/find/all")
     public ResponseEntity<?> getRecruit(){
 
-        List<Recruit> recruitList = recruitService.findRecruit();
+        List<Recruit> recruitList = recruitService.findAllRecruit();
 
         List<RecruitResponseDto> recruitResponseDtos = recruitMapper.recruitListToRecruitResponseDtos(recruitList);
 
@@ -67,5 +68,13 @@ public class RecruitController {
         List<RecruitResponseDto> recruitResponseDtos = recruitMapper.recruitListToRecruitResponseDtos(recruitList);
 
         return new ResponseEntity<>(recruitResponseDtos,HttpStatus.OK);
+    }
+
+    @GetMapping("/find/detail/{recruit-id}")
+    public ResponseEntity<?> getDetailRecruit(@PathVariable("recruit-id") Long recruitId){
+
+        RecruitDetailDto detailRecruit = recruitService.findDetailRecruit(recruitId);
+
+        return new ResponseEntity<>(detailRecruit,HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.wanted.demo.domain.recruit.repository;
 
+import com.wanted.demo.domain.company.entity.Company;
 import com.wanted.demo.domain.recruit.entity.Recruit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,4 +29,7 @@ public interface RecruitRepository extends JpaRepository<Recruit,Long> {
             "r.company.nation LIKE %:search% OR " +
             "r.company.region LIKE %:search% ")
     List<Recruit> findRecruitsBySearchString(@Param("search") String search);
+
+    @Query(value = "select r.recruitId from  Recruit r where r.company = :company")
+    List<Long> findIdsByCompany(Company company);
 }

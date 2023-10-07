@@ -5,8 +5,11 @@ import com.wanted.demo.domain.company.repository.CompanyRepository;
 import com.wanted.demo.domain.recruit.entity.Recruit;
 import com.wanted.demo.domain.recruit.repository.RecruitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +31,15 @@ public class RecruitService {
         Recruit findedRecruit = recruitRepository.findById(recruit.getRecruitId()).orElseThrow();
 
         recruitRepository.changeAll(recruit.getPosition(),recruit.getBonus(), recruit.getDetail(), recruit.getTechnique(),recruit.getRecruitId());
+    }
+
+    public void deleteRecruit(Long recruitId) {
+
+        recruitRepository.deleteById(recruitId);
+    }
+
+    public List<Recruit> findRecruit() {
+
+        return recruitRepository.findAll();
     }
 }

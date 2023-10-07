@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/recruit")
 @RequiredArgsConstructor
@@ -38,19 +40,23 @@ public class RecruitController {
         return new ResponseEntity<>("정상적으로 변경됨",HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteRecruit(){
+    @DeleteMapping("/delete/{recruit-id}")
+    public ResponseEntity<?> deleteRecruit(@PathVariable("recruit-id") Long recruitId){
 
+        recruitService.deleteRecruit(recruitId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping
+
+    @GetMapping("/find/all")
     public ResponseEntity<?> getRecruit(){
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<Recruit> recruitList = recruitService.findRecruit();
+
+        return new ResponseEntity<>(recruitList,HttpStatus.OK);
     }
 
-    @GetMapping("/hi")
+    @GetMapping("/find")
     public ResponseEntity<?> getSearchRecruit(@RequestParam("search") String search){
 
         return new ResponseEntity<>(HttpStatus.OK);

@@ -1,25 +1,41 @@
 package com.wanted.demo.domain.recruit.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.wanted.demo.domain.company.entity.Company;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
+@Setter
+@NoArgsConstructor
 public class Recruit {
 
+    public Recruit(String position, Long bonus, String detail, String technique) {
+        this.position = position;
+        this.bonus = bonus;
+        this.detail = detail;
+        this.technique = technique;
+    }
+
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long recruitId;
 
     @Column
     private String position;
 
     @Column
-    private String bonus;
+    private Long bonus;
 
     @Column
     private String detail;
 
     @Column
     private String technique;
+
+    @ManyToOne
+    private Company company;
 
 }
